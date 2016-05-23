@@ -18,6 +18,6 @@
 		MySQL-connector
 
 ###Functions
-		LogOut, LogOut
+		LogIn, LogOut, Register
 		CRUD
 		Deploying to AWS ready
