@@ -3,10 +3,10 @@ package com.imlewis.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.imlewis.dao.RoleDao;
-import com.imlewis.dao.UserDao;
 import com.imlewis.model.Role;
 import com.imlewis.model.User;
+import com.imlewis.repository.RoleDao;
+import com.imlewis.repository.UserDao;
 
 @Service
 public class UserServiceImpl implements UserService{

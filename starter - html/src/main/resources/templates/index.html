@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Getting Started: Serving Web Content</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body th:inline="text">
+	<div class="container">
+		<div th:replace="fragment :: header"></div>
+		
+		<hr/>
+		<div th:switch="${username}">
+			<div th:case="'null'"><a href="/login">Login</a></div>
+			<div th:case="*">
+				<p th:text="'Hello, ' + ${username} + '!'" />
+				<form th:action="@{/logout}" method="post">
+		        	<input type="submit" value="Sign Out"/>
+		    	</form>
+			</div>
+		</div>
+		<hr/>
+		<button th:onclick="'test(\''+${username}+'\')'">Button</button>
+		<script>function test(username){alert(username);}</script>
+		<div th:replace="fragment :: footer"></div>
+	</div>
+</body>
+</html>

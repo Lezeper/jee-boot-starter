@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.imlewis.dao.UserDao;
 import com.imlewis.model.User;
+import com.imlewis.repository.UserDao;
 
 @Controller
 public class MainController {

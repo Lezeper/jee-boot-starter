@@ -1,30 +1,32 @@
 package com.imlewis.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.imlewis.dao.UserDao;
 import com.imlewis.model.User;
-import com.imlewis.repository.UserDao;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+public class UserController {
 	
 	@Autowired
 	private UserDao userDao;
 	
-	@RequestMapping
-	public String getAllUser(Model model){
-		List<User> users = (List<User>) userDao.findAll();
-		model.addAttribute("users", users);
-		return "admin/index";
+	@RequestMapping("/create")
+	@ResponseBody
+	public String create(String email, String name, String password) {
+		User user = null;
+		try {
+			user = new User(email, name, password);
+			userDao.save(user);
+		} catch (Exception ex) {
+			return "Error creating the user: " + ex.toString();
+		}
+		return "User succesfully created! (id = " + user.getId() + ")";
 	}
-	
+
 	@RequestMapping("/delete")
 	@ResponseBody
 	public String delete(long id) {
@@ -43,10 +45,25 @@ public class AdminController {
 		String userId;
 		try {
 			User user = userDao.findByEmail(email);
-			userId = String.valueOf(user.getUserId());
+			userId = String.valueOf(user.getId());
 		} catch (Exception ex) {
 			return "User not found";
 		}
 		return "The user id is: " + userId;
+	}
+
+	@RequestMapping("/update")
+	@ResponseBody
+	public String updateUser(long id, String email, String name, String password) {
+		try {
+			User user = userDao.findOne(id);
+			user.setEmail(email);
+			user.setUsername(name);
+			user.setPassword(password);
+			userDao.save(user);
+		} catch (Exception ex) {
+			return "Error updating the user: " + ex.toString();
+		}
+		return "User succesfully updated!";
 	}
 }

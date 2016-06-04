@@ -1,4 +1,4 @@
-package com.imlewis.dao;
+package com.imlewis.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import com.imlewis.model.Role;
