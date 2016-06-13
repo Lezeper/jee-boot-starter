@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/jsp/header.jsp"%>
+<%@include file="/WEB-INF/view/template/header.jsp"%>
 <hr>
 
 <div class="row">
@@ -92,4 +92,4 @@
 </div>
 
 <hr>
-<%@include file="/WEB-INF/jsp/footer.jsp"%>
+<%@include file="/WEB-INF/view/template/footer.jsp"%>

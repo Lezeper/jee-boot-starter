@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.imlewis.model.User;
-import com.imlewis.repository.UserDao;
+import com.imlewis.repository.UserRepository;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userRepository;
 	
 	@RequestMapping
 	public String getAllUser(Model model){
-		List<User> users = (List<User>) userDao.findAll();
+		List<User> users = (List<User>) userRepository.findAll();
 		model.addAttribute("users", users);
 		return "admin/index";
 	}
@@ -30,7 +30,7 @@ public class AdminController {
 	public String delete(long id) {
 		try {
 			User user = new User(id);
-			userDao.delete(user);
+			userRepository.delete(user);
 		} catch (Exception ex) {
 			return "Error deleting the user:" + ex.toString();
 		}
@@ -42,7 +42,7 @@ public class AdminController {
 	public String getByEmail(String email) {
 		String userId;
 		try {
-			User user = userDao.findByEmail(email);
+			User user = userRepository.findByEmail(email);
 			userId = String.valueOf(user.getUserId());
 		} catch (Exception ex) {
 			return "User not found";

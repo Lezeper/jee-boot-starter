@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.imlewis.model.User;
 
 @Transactional
-public interface UserDao extends CrudRepository<User, Long>{
+public interface UserRepository extends CrudRepository<User, Long>{
 	User findByEmail(String email);
 	
 }

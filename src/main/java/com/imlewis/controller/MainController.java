@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.imlewis.model.User;
-import com.imlewis.repository.UserDao;
+import com.imlewis.repository.UserRepository;
 
 @Controller
 public class MainController {
 	
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -27,7 +27,7 @@ public class MainController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth.getPrincipal() != "anonymousUser") {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
-			User user = userDao.findByEmail(userDetails.getUsername());
+			User user = userRepository.findByEmail(userDetails.getUsername());
 			model.addAttribute("user", user);
 		}else{
 			model.addAttribute("user", "null");

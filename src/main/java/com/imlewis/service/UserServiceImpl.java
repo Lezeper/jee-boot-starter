@@ -5,15 +5,15 @@ import org.springframework.stereotype.Service;
 
 import com.imlewis.model.Role;
 import com.imlewis.model.User;
-import com.imlewis.repository.RoleDao;
-import com.imlewis.repository.UserDao;
+import com.imlewis.repository.RoleRepository;
+import com.imlewis.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{
 	@Autowired
-    private UserDao userDao;
+    private UserRepository userDao;
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepository roleDao;
 
     public void save(User user) {
     	user.setEnabled(true);
